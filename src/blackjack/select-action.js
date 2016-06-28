@@ -1,21 +1,22 @@
 import cardValue from 'blackjack/card-value'
 import cardSum from 'blackjack/card-sum'
 import shouldHit from 'blackjack/should-hit'
-import shouldSplit from 'blackjack/card-value'
+import shouldSplit from 'blackjack/should-split'
+
 export default function selectAction(cardA, cardB) {
 
-var y = cardValue(cardA);
-var z = cardValue(cardB);
-var x = cardValue(cardA) + cardValue(cardB);
 
 
-if(cardSum(y,z) === 21){
+
+if(cardValue(cardA) +cardValue(cardB) === 21){
   return 'stay';
 }
-if(shouldHit(y,z) === true){
-  return 'hit';
-}
-if(shouldSplit(y,z) === true){
+if(shouldSplit(cardA,cardB) === true){
   return 'split';
 }
+
+if(shouldHit(cardA,cardB) !== false){
+  return 'hit';
+}
+
 }
